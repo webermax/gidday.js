@@ -1,0 +1,3 @@
+[submodule "qrcodesvg"]
+	path = qrcodesvg
+	url = https://github.com/webermax/qrcodesvg.git
