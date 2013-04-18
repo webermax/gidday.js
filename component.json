@@ -1,0 +1,8 @@
+{
+    "name":  "vqr",
+    "version": "0.0.1",
+    "dependencies": {
+        "bootstrap.css": "latest",
+        "jquery": "latest"
+    }
+}

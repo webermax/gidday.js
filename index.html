@@ -1,0 +1,32 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>wbrmx.de</title>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="components/bootstrap.css/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+<style>
+html, body { margin:0; padding:0; overflow:hidden }
+</style>
+	<div id="vcard"></div>
+	<script src="components/jquery/jquery.min.js"></script>
+	<script src="components/bootstrap.css/js/bootstrap.min.js"></script>
+	<script src="qrcodesvg/raphael-2.1.0-min.js"></script>
+	<script src="qrcodesvg/qrcodesvg.js"></script>
+<script>
+content = '';
+function draw() {
+	var size = Math.min(window.innerHeight, window.innerWidth);
+	$('#vcard svg').remove();
+ 	var qrcodesvg = new Qrcodesvg( content, "vcard", size, {"ecclevel" : 1});
+ 	qrcodesvg.draw({"method":"classic", "fill-colors":["#1C46ED","#021872","#0125C4"]}, {"stroke-width":1});
+}
+window.onresize = draw;
+window.onload = function() {
+	$.get('vcard.vcf', function(data) { console.log(data); content = data; draw(); }, 'text');
+};
+</script>
+</body>
+</html>
