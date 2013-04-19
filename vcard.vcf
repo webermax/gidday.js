@@ -1,5 +1,6 @@
 BEGIN:VCARD
+VERSION:3.0
 N:Weber;Maximilian;;;
 FN:Maximilian Weber
-EMAIL;type=INTERNET;type=WORK;type=pref:post@wbrmx.de
+item1.EMAIL;type=INTERNET;type=pref:post@wbrmx.de
 END:VCARD
