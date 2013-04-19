@@ -1,3 +1,6 @@
 [submodule "qrcodesvg"]
 	path = qrcodesvg
 	url = https://github.com/webermax/qrcodesvg.git
+[submodule "vcard.js"]
+	path = vcard.js
+	url = https://github.com/mattt/vcard.js.git

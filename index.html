@@ -1,32 +1,60 @@
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>wbrmx.de</title>
+<!DOCTYPE html>
+<html>
+<head>
+<title>wbrmx.de</title>
 <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="components/bootstrap.css/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    </head>
-    <body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="components/bootstrap.css/css/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
 <style>
-html, body { margin:0; padding:0; overflow:hidden }
+body { background: url('asfalt.png'); text-align:center; }
+svg { cursor:pointer; vertical-align:bottom }
+#vcard {
+	padding:10px;
+	text-align:center;
+	display:inline-block;
+	background:white;
+}
 </style>
-	<div id="vcard"></div>
-	<script src="components/jquery/jquery.min.js"></script>
-	<script src="components/bootstrap.css/js/bootstrap.min.js"></script>
-	<script src="qrcodesvg/raphael-2.1.0-min.js"></script>
-	<script src="qrcodesvg/qrcodesvg.js"></script>
+<!-- Modal -->
+<div id="download" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Download card</h3>
+</div>
+<div id="download-body" class="modal-body">
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+<button class="btn btn-primary" onclick="location.href='vcard.vcf';">Download</button>
+</div>
+</div>
+<div id="vcard"></div>
+<script src="components/jquery/jquery.min.js"></script>
+<script src="components/bootstrap.css/js/bootstrap.min.js"></script>
+<script src="qrcodesvg/raphael-2.1.0-min.js"></script>
+<script src="qrcodesvg/qrcodesvg.js"></script>
+<script src="vcard.js/vcard.js"></script>
 <script>
 content = '';
 function draw() {
-	var size = Math.min(window.innerHeight, window.innerWidth);
+	var size = Math.min(window.innerHeight, window.innerWidth)/2;
 	$('#vcard svg').remove();
  	var qrcodesvg = new Qrcodesvg( content, "vcard", size, {"ecclevel" : 1});
- 	qrcodesvg.draw({"method":"classic", "fill-colors":["#1C46ED","#021872","#0125C4"]}, {"stroke-width":1});
+ 	qrcodesvg.draw({"method":"classic"});
 }
 window.onresize = draw;
 window.onload = function() {
-	$.get('vcard.vcf', function(data) { console.log(data); content = data; draw(); }, 'text');
+	$.get('vcard.vcf', function(data, textStatus, jqXHR) {
+		content = '' + data;
+		draw();
+		//$('#download-body').innerHTML = data;//vCard.initialize('' + encodeURIComponent(data)).to_html();
+	}, 'text');
 };
+$('#vcard').on('click', 'svg', function() {
+	$('#download').modal('show');
+});
 </script>
 </body>
 </html>
