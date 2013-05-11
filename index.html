@@ -47,7 +47,7 @@ content = '';
 function draw() {
 	var size = Math.min(window.innerHeight, window.innerWidth)/2-20;
 	$('#vcard svg').remove();
- 	var qrcodesvg = new Qrcodesvg( content, "vcard", size, {"ecclevel" : 1});
+ 	var qrcodesvg = new Qrcodesvg( content, "vcard", size, {"ecclevel" : 1, "stroke-width":1});
  	qrcodesvg.draw({"method":"classic"});
 	$('#vcard').css('margin-top', size/2 + 'px');
 }
